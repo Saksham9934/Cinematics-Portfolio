@@ -241,5 +241,24 @@
 </footer>
 
 <script type="module" src="src/main.js"></script>
+
+<audio id="bgMusic" src="public/audio/bg-music.m4a" loop preload="auto"></audio>
+<script>
+(function () {
+  var audio = document.getElementById('bgMusic');
+  var started = false;
+  function startMusic() {
+    if (started) return;
+    started = true;
+    audio.play().catch(function () { started = false; });
+  }
+  ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'].forEach(function (evt) {
+    window.addEventListener(evt, startMusic, { passive: true });
+  });
+})();
+</script>
+</body>
+</html>
+     
 </body>
 </html>
